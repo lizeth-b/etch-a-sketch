@@ -1,5 +1,6 @@
 const PAD_SIZE = 960;
 let isDrawing = false;
+let brushMode = true;
 
 function drawPad(side) {
   container.replaceChildren();
@@ -13,27 +14,41 @@ function drawPad(side) {
 }
 
 function changeTileColor(e) {
-  if (isDrawing) {
+  if (brushMode) {
     if (e.target.dataset.counter > 0) {
       e.target.dataset.counter = Number(e.target.dataset.counter) - 1;
     }
     e.target.style.backgroundColor = `hsl(182, 33%, ${5 * e.target.dataset.counter}%)`;
+  } else {
+    e.target.dataset.counter = 11;
+    e.target.style.backgroundColor = '#fef39a';
   }
 }
+
+const newBtn = document.querySelector('.new');
+newBtn.addEventListener('click', () => {
+  let side = Number(prompt('Number of squares per side (max 100):', 100));
+  if (side >= 0 && side <= 100) {
+    drawPad(side);
+  }
+});
+
+const modeBtn = document.querySelector('.mode');
+modeBtn.addEventListener('click', () => {
+  if (brushMode) {
+    modeBtn.textContent = 'Use brush';
+    brushMode = false;
+  } else {
+    modeBtn.textContent = 'Use eraser';
+    brushMode = true;
+  }
+});
 
 const container = document.querySelector('.container');
 container.style.width = `${PAD_SIZE}px`;
 container.style.height = `${PAD_SIZE}px`;
 container.addEventListener('mousedown', () => {isDrawing = true});
 container.addEventListener('mouseup', () => {isDrawing = false});
-container.addEventListener('mouseover', changeTileColor);
-
-const button = document.querySelector('button');
-button.addEventListener('click', () => {
-  let side = Number(prompt('Number of squares per side (max 100):', 100));
-  if (side >= 0 && side <= 100) {
-    drawPad(side);
-  }
-});
+container.addEventListener('mouseover', (e) => {if (isDrawing) changeTileColor(e)});
 
 drawPad(100);
