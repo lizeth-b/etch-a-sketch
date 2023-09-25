@@ -12,18 +12,19 @@ function drawPad(side) {
   }
 }
 
+function changeTileColor(e) {
+  if (e.target.dataset.counter > 0) {
+    e.target.dataset.counter = Number(e.target.dataset.counter) - 1;
+  }
+  e.target.style.backgroundColor = `hsl(182, 33%, ${5 * e.target.dataset.counter}%)`;
+}
+
 const container = document.querySelector('.container');
 container.style.width = `${PAD_SIZE}px`;
 container.style.height = `${PAD_SIZE}px`;
 container.style.display = 'flex';
 container.style.flexWrap = 'wrap';
-
-container.addEventListener('mouseover', (e) => {
-  if (e.target.dataset.counter > 0) {
-    e.target.dataset.counter = Number(e.target.dataset.counter) - 1;
-  }
-  e.target.style.backgroundColor = `hsl(182, 33%, ${5 * e.target.dataset.counter}%)`;
-});
+container.addEventListener('mouseover', changeTileColor);
 
 const button = document.querySelector('button');
 button.addEventListener('click', () => {
