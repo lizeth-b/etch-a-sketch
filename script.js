@@ -4,6 +4,7 @@ function drawPad(side) {
   container.replaceChildren();
   for (let i = 0; i < side*side; i++) {
     let tile = document.createElement('div');
+    tile.dataset.counter = 11;
     tile.style.width = `${PAD_SIZE / side}px`;
     tile.style.height = `${PAD_SIZE / side}px`;
     tile.style.backgroundColor = '#fef39a';
@@ -18,7 +19,10 @@ container.style.display = 'flex';
 container.style.flexWrap = 'wrap';
 
 container.addEventListener('mouseover', (e) => {
-  e.target.style.backgroundColor = '#89c1c3';
+  if (e.target.dataset.counter >= 0) {
+    e.target.dataset.counter = Number(e.target.dataset.counter) - 1;
+    e.target.style.backgroundColor = `hsl(182, 33%, ${5 * e.target.dataset.counter}%)`;
+  }
 });
 
 const button = document.querySelector('button');
