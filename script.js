@@ -1,6 +1,4 @@
 const PAD_SIZE = 960;
-let isDrawing = false;
-let brushMode = true;
 
 function drawPad(side) {
   container.replaceChildren();
@@ -34,6 +32,7 @@ newBtn.addEventListener('click', () => {
 });
 
 const modeBtn = document.querySelector('.mode');
+let brushMode = true;
 modeBtn.addEventListener('click', () => {
   if (brushMode) {
     modeBtn.textContent = 'Use brush';
@@ -47,6 +46,7 @@ modeBtn.addEventListener('click', () => {
 const container = document.querySelector('.container');
 container.style.width = `${PAD_SIZE}px`;
 container.style.height = `${PAD_SIZE}px`;
+let isDrawing = false;
 container.addEventListener('mousedown', () => {isDrawing = true});
 container.addEventListener('mouseup', () => {isDrawing = false});
 container.addEventListener('mouseover', (e) => {if (isDrawing) changeTileColor(e)});
