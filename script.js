@@ -23,6 +23,10 @@ function changeTileColor(e) {
   }
 }
 
+function isMobileDevice() {
+  return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+}
+
 const newBtn = document.querySelector('.new');
 newBtn.addEventListener('click', () => {
   let side = Number(prompt('Number of squares per side (max 100):', 100));
@@ -47,8 +51,19 @@ const container = document.querySelector('.container');
 container.style.width = `${PAD_SIZE}px`;
 container.style.height = `${PAD_SIZE}px`;
 let isDrawing = false;
-container.addEventListener('mousedown', () => {isDrawing = true});
-container.addEventListener('mouseup', () => {isDrawing = false});
-container.addEventListener('mouseover', (e) => {if (isDrawing) changeTileColor(e)});
+if (isMobileDevice()) {
+  container.addEventListener('touchstart', () => {isDrawing = true});
+  container.addEventListener('touchend', () => {isDrawing = false});
+  container.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+    if (isDrawing) {
+      changeTileColor(e);
+    }
+  });
+} else {
+  container.addEventListener('mousedown', () => {isDrawing = true});
+  container.addEventListener('mouseup', () => {isDrawing = false});
+  container.addEventListener('mouseover', (e) => {if (isDrawing) changeTileColor(e)});
+}
 
 drawPad(100);
