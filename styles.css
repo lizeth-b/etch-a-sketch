@@ -1,3 +1,17 @@
 * {
   box-sizing: border-box;
 }
+
+button {
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  cursor: pointer;
+}
+
+.container div {
+  background-color: #fef39a;
+}

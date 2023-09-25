@@ -8,7 +8,6 @@ function drawPad(side) {
     tile.dataset.counter = 11;
     tile.style.width = `${PAD_SIZE / side}px`;
     tile.style.height = `${PAD_SIZE / side}px`;
-    tile.style.backgroundColor = '#fef39a';
     container.appendChild(tile);
   }
 }
@@ -25,8 +24,6 @@ function changeTileColor(e) {
 const container = document.querySelector('.container');
 container.style.width = `${PAD_SIZE}px`;
 container.style.height = `${PAD_SIZE}px`;
-container.style.display = 'flex';
-container.style.flexWrap = 'wrap';
 container.addEventListener('mousedown', () => {isDrawing = true});
 container.addEventListener('mouseup', () => {isDrawing = false});
 container.addEventListener('mouseover', changeTileColor);
