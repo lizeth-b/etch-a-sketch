@@ -19,10 +19,10 @@ container.style.display = 'flex';
 container.style.flexWrap = 'wrap';
 
 container.addEventListener('mouseover', (e) => {
-  if (e.target.dataset.counter >= 0) {
+  if (e.target.dataset.counter > 0) {
     e.target.dataset.counter = Number(e.target.dataset.counter) - 1;
-    e.target.style.backgroundColor = `hsl(182, 33%, ${5 * e.target.dataset.counter}%)`;
   }
+  e.target.style.backgroundColor = `hsl(182, 33%, ${5 * e.target.dataset.counter}%)`;
 });
 
 const button = document.querySelector('button');
