@@ -1,4 +1,5 @@
 const PAD_SIZE = 960;
+let isDrawing = false;
 
 function drawPad(side) {
   container.replaceChildren();
@@ -13,10 +14,12 @@ function drawPad(side) {
 }
 
 function changeTileColor(e) {
-  if (e.target.dataset.counter > 0) {
-    e.target.dataset.counter = Number(e.target.dataset.counter) - 1;
+  if (isDrawing) {
+    if (e.target.dataset.counter > 0) {
+      e.target.dataset.counter = Number(e.target.dataset.counter) - 1;
+    }
+    e.target.style.backgroundColor = `hsl(182, 33%, ${5 * e.target.dataset.counter}%)`;
   }
-  e.target.style.backgroundColor = `hsl(182, 33%, ${5 * e.target.dataset.counter}%)`;
 }
 
 const container = document.querySelector('.container');
@@ -24,6 +27,8 @@ container.style.width = `${PAD_SIZE}px`;
 container.style.height = `${PAD_SIZE}px`;
 container.style.display = 'flex';
 container.style.flexWrap = 'wrap';
+container.addEventListener('mousedown', () => {isDrawing = true});
+container.addEventListener('mouseup', () => {isDrawing = false});
 container.addEventListener('mouseover', changeTileColor);
 
 const button = document.querySelector('button');
