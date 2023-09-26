@@ -19,7 +19,7 @@ function changeTileColor(e) {
     e.target.style.backgroundColor = `hsl(182, 33%, ${5 * e.target.dataset.counter}%)`;
   } else {
     e.target.dataset.counter = 11;
-    e.target.style.backgroundColor = '#fef39a';
+    e.target.style.backgroundColor = 'hsl(53, 98%, 80%)';
   }
 }
 
@@ -27,7 +27,7 @@ function isMobileDevice() {
   return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 }
 
-const newPad = document.querySelector('.new');
+const newPad = document.querySelector('.new-form');
 const pixelSide = document.querySelector('#pixels');
 newPad.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -36,7 +36,7 @@ newPad.addEventListener('submit', (e) => {
   }
 });
 
-const modeBtn = document.querySelector('.mode');
+const modeBtn = document.querySelector('.mode-btn');
 let brushMode = true;
 modeBtn.addEventListener('click', () => {
   if (brushMode) {
