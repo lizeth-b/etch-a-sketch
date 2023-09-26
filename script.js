@@ -31,7 +31,7 @@ const newPad = document.querySelector('.new');
 const pixelSide = document.querySelector('#pixels');
 newPad.addEventListener('submit', (e) => {
   e.preventDefault();
-  if (pixelSide.value >= 0 && pixelSide.value <= 100) {
+  if (pixelSide.value >= 2 && pixelSide.value <= 100) {
     drawPad(pixelSide.value);
   }
 });
