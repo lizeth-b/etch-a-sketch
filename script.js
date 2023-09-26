@@ -27,11 +27,12 @@ function isMobileDevice() {
   return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 }
 
-const newBtn = document.querySelector('.new');
-newBtn.addEventListener('click', () => {
-  let side = Number(prompt('Number of squares per side (max 100):', 100));
-  if (side >= 0 && side <= 100) {
-    drawPad(side);
+const newPad = document.querySelector('.new');
+const pixelSide = document.querySelector('#pixels');
+newPad.addEventListener('submit', (e) => {
+  e.preventDefault();
+  if (pixelSide.value >= 0 && pixelSide.value <= 100) {
+    drawPad(pixelSide.value);
   }
 });
 
